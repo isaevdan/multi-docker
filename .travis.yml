@@ -1,6 +1,8 @@
 sudo: required
 services:
 - docker
+script:
+  - echo "script"
 # before_install:
 # - docker build -t denysisaievsbtech/react-test -f ./client/Dockerfile.dev ./client
 # script:
