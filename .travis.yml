@@ -21,3 +21,16 @@ after_succes:
   - docker push denysisaievsbtech/multi-nginx
   - docker push denysisaievsbtech/multi-server
   - docker push denysisaievsbtech/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: AKIAYNTAELUMZS6VAIM5
+  secret_access_key:
+    secure: HPR+hXiYEeJofTubC74avSp/TDwbSpkC9ZpKRWYFFx/mzBUDpSPR4UeXxADZkvlY7Hm/oZ/SyPWqn2b6/fF5xTz0jwkcufVivXwKTR7j7s7pO/FSPw4a+FqPCd53GjUNeKeuPnmL3+BF2RXx5c7S+6SzjcBep9Nu6LrhNmZgHwpYc4xd4xLeyNKQAzVDLluQ3Kt0axHBWGa0Jc0JTwhyF+mPHEvfYETJhpEFRwKANxIK2gN74pYFJVIJcDd9gOPtwanj4TLppu6fBRaA054FOM2ZI/sP7V/R/dOi3LehQK/d1WJAfnEpNCR1bnq9tZ58VnkpSx9eylDEZlnJIAwZ1Qi8B+NBtVZlxalvPiO+JLBfh+4HaxyNZoCx1HWliumTPBAfOUWbP5NNo4F3TqW6YpGo6Ht1zk5o00a/FWwmzSu+sPfsVydTAWmKx2/4nhweUqp5buwuW0i5d4oQwuB6tDGJF0bW3TlQjw04mD5SDQqCMC5srqeTI8q4YnGRm/18AZhMPbO9i7AgHCi/VzIBKGGnnWzZGhGskXbcoorKmV4NUJnPyapJfKK4SrdK7EDbX0m/iIjQjgoI2hR701olSVgyL2FABN9oby7Qf1s+bPZYlMawmD4XtunLdlKNZgoLQYmuwgP103QVDPmewq8olnpPRubzx7R92HuRaKfYYf8=
+  region: us-east-2
+  app: multi-docker
+  env: Multidocker-env
+  bucket_name: elasticbeanstalk-us-east-2-578948455705
+  on:
+    branch: master
+  skip_cleanup: 'true'
