@@ -1,32 +1,25 @@
 sudo: required
-
 services:
-  - docker
-
+- docker
 before_install:
-  - docker build -t denysisaievsbtech/react-test -f ./client/Dockerfile.dev ./client
-
+- docker build -t denysisaievsbtech/react-test -f ./client/Dockerfile.dev ./client
 script:
-  - docker run denysisaievsbtech/react-test npm run test -- --coverage
-
+- docker run denysisaievsbtech/react-test npm run test -- --coverage
 after_succes:
-  - docker build -t denysisaievsbtech/multi-client ./client
-  - docker build -t denysisaievsbtech/multi-nginx ./nginx
-  - docker build -t denysisaievsbtech/multi-server ./server
-  - docker build -t denysisaievsbtech/multi-worker ./worker
-
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-
-  - docker push denysisaievsbtech/multi-client
-  - docker push denysisaievsbtech/multi-nginx
-  - docker push denysisaievsbtech/multi-server
-  - docker push denysisaievsbtech/multi-worker
-
+- docker build -t denysisaievsbtech/multi-client ./client
+- docker build -t denysisaievsbtech/multi-nginx ./nginx
+- docker build -t denysisaievsbtech/multi-server ./server
+- docker build -t denysisaievsbtech/multi-worker ./worker
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+- docker push denysisaievsbtech/multi-client
+- docker push denysisaievsbtech/multi-nginx
+- docker push denysisaievsbtech/multi-server
+- docker push denysisaievsbtech/multi-worker
 deploy:
   provider: elasticbeanstalk
-  access_key_id: AKIAYNTAELUMZS6VAIM5
+  access_key_id: AKIAYNTAELUMRSZK4RKR
   secret_access_key:
-    secure: HPR+hXiYEeJofTubC74avSp/TDwbSpkC9ZpKRWYFFx/mzBUDpSPR4UeXxADZkvlY7Hm/oZ/SyPWqn2b6/fF5xTz0jwkcufVivXwKTR7j7s7pO/FSPw4a+FqPCd53GjUNeKeuPnmL3+BF2RXx5c7S+6SzjcBep9Nu6LrhNmZgHwpYc4xd4xLeyNKQAzVDLluQ3Kt0axHBWGa0Jc0JTwhyF+mPHEvfYETJhpEFRwKANxIK2gN74pYFJVIJcDd9gOPtwanj4TLppu6fBRaA054FOM2ZI/sP7V/R/dOi3LehQK/d1WJAfnEpNCR1bnq9tZ58VnkpSx9eylDEZlnJIAwZ1Qi8B+NBtVZlxalvPiO+JLBfh+4HaxyNZoCx1HWliumTPBAfOUWbP5NNo4F3TqW6YpGo6Ht1zk5o00a/FWwmzSu+sPfsVydTAWmKx2/4nhweUqp5buwuW0i5d4oQwuB6tDGJF0bW3TlQjw04mD5SDQqCMC5srqeTI8q4YnGRm/18AZhMPbO9i7AgHCi/VzIBKGGnnWzZGhGskXbcoorKmV4NUJnPyapJfKK4SrdK7EDbX0m/iIjQjgoI2hR701olSVgyL2FABN9oby7Qf1s+bPZYlMawmD4XtunLdlKNZgoLQYmuwgP103QVDPmewq8olnpPRubzx7R92HuRaKfYYf8=
+    secure: SJmVg3BThdhw6ismu6JIkqBKYpXM2sTzWuHLgqytbHOCKI0Qn4UFrh2IFXJKszYmIgDfSNgFDQ4mn8dTToNIVFYmXQd3D98APncF/zMYrU2lnfsvnWuBzEqSRpX5l2ccfkVAH8Y8seAdqQk9m79uYT7jvwWNvlJttAh/iNYIptYlk40avdpuvNnFbpDm+UWdW0sZYP/vofhVgVAfWmNNzXSMaZiDMG3c6pwuV4stQrVszHuXQrowXwugLa6/0DzWlHgjSSQxftbZY/0bEbhbRQlrLmuWriH7nNawInRPJl4M3eUP0NG9PDR8PqAaOQkgKbqmlfaKuFIoR4GOY9ugN7zgbUYyUJ/w8TGEAdhN3FFgBV5eIWEHGC5lrZf/VVPm3oTCDrj3cGp200/QO9dhAud2wHEphERSjqo7QBEZEbjisv6X5hDYU5V2W2elEox0RC7taaoLCK4HKrhaeqdWoe7wmBohO51t73aOZy7b3uV3YCk1M1F+x86PwvUcQRzst+YWSGvTzA14tBxNjbWS1eibb6tNQnC/WiEHCbbcgAMYS5z0tPwLEy7CSzlDPWsC8D6xSgIT1HLzGX96VJsohny/z7wT3D1qK9nbRPCIAUGvSJaO35vkkGOV4pjXAg++JBlRxehm/yYYxmQzkEonnRwnUR3cqiFDWJ3lKZRa8wY=
   region: us-east-2
   app: multi-docker
   env: Multidocker-env
