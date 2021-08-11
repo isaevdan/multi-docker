@@ -7,7 +7,7 @@ jobs:
         steps:
             - run: echo ::set-env name=pull_number::$(jq — raw-output .pull_request.number $GITHUB_EVENT_PATH)
             - name: Slack Notification
-            uses: rtCamp/action-slack-notify@master
+                uses: rtCamp/action-slack-notify@master
         env:
             SLACK_CHANNEL: test-github
             SLACK_MESSAGE: ‘Please review on https://github.com/SynergySports/data-core/pull/${{ env.pull_number}}’
